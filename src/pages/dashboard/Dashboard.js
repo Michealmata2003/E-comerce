@@ -1,13 +1,13 @@
 import React from 'react'
-import Navbar from '../../userdashboard/components/navbar/Navbar'
 import ProfileHero from '../../userdashboard/components/hero/Hero'
 import Assurance from '../../userdashboard/components/assurance/Assurance'
 import SellerComp from '../../userdashboard/components/sellers/SellerComp'
+import Nav from '../../userdashboard/components/navbar/Navbar'
 
 const Dashboard = () => {
   return (
     <div>
-      <Navbar />
+      <Nav />
       <ProfileHero />
       <Assurance />
       <SellerComp />

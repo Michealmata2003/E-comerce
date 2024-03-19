@@ -4,7 +4,7 @@ import './Input.css';
 
 
 
-export const CustomInput = ({ label, name, placeholder }) => {
+export const CustomInput = ({ label, name, placeholder, }) => {
   return (
     <InputWrap>
       <label style={labelStyling} >{label}</label>
@@ -14,16 +14,13 @@ export const CustomInput = ({ label, name, placeholder }) => {
   )
 }
 
-// const Child = forwardRef(function (props, ref) {
-//   return <CustomFormInput ref={ref} />
-// })
 
-export const CustomFormInput = ({ type, label, name, placeholder, onChange}) => {
+export const CustomFormInput = ({ type, label, name, placeholder, onChange, values, error }) => {
   return (
     <InputWrap>
       <label style={labelStyling} >{label}</label>
-      <input className='realinput' type={type}  placeholder={placeholder} name={name}  onChange={onChange} />
-
+      <input className='realinput' type={type} placeholder={placeholder} name={name} onChange={onChange} value={values} />
+      <span>{error}</span>
     </InputWrap>
   )
 }

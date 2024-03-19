@@ -1,6 +1,11 @@
 import { useContext, createContext ,useState, useEffect } from "react";
 
 const AuthContext = createContext()
+const ProfileContext = createContext();
+
+
+export const useProfile = () => useContext(ProfileContext);
+
 
 export function useAuth() {
     return useContext(AuthContext);
@@ -24,6 +29,15 @@ export function AuthProvider(props) {
 }
 
 
+export const ProfileProvider = ({ children }) => {
+    const [profileData, setProfileData] = useState(null);
+
+    return (
+        <ProfileContext.Provider value={{ profileData, setProfileData }}>
+            {children}
+        </ProfileContext.Provider>
+    );
+};
 
 
 
@@ -34,36 +48,3 @@ export function AuthProvider(props) {
 
 
 
-
-
-
-
-
-
-
-
-
-// import { createContext, useReducer } from "react"
-// import Reducer from "./Reducer";
-
-// const INITIAL_STATE = {
-//     user: null,
-//     isFetching: false,
-//     error: false
-// }
-
-// export const Context = createContext(INITIAL_STATE);
-
-// export const ContextProvider = ({ children }) => {
-//     const [state, dispatch] = useReducer(Reducer, INITIAL_STATE);
-//     return (
-//         <Context.Provider value={{
-//             user: state.user,
-//             isFetching: state.isFetching,
-//             error: state.error,
-//             dispatch,
-//         }}>
-//             {children}
-//         </Context.Provider>
-//     )
-// }

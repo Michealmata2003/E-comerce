@@ -6,9 +6,13 @@ import Text from './Text';
 import { CustomInputButton } from '../buttons/Button';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useProfile } from '../../context/Context';
 
 const Login = () => {
     const navigate = useNavigate()
+    const { setProfileData } = useProfile();
+    // const [isLoading, setIsLoading] = useState(false)
+
 
     const [values, setValues] = useState({
         email: '',
@@ -16,21 +20,33 @@ const Login = () => {
     })
     useEffect(() => {
         if (localStorage.getItem('commerce')) {
-            navigate('/dashboard')
+            navigate('/login')
         }
     }, [])
     const handleSubmit = async (e) => {
         e.preventDefault()
         const { email, password } = values;
-        const { res } = await axios.post('https://prakem-api.onrender.com/api/auth/login', {
-            email,
-            password
-        });
-        if (res.status === true) {
-            localStorage.setItem('values', JSON.stringify(res.data))
+        try {
+            const response = await axios.post('https://prakem-api.onrender.com/api/auth/login', {
+                email,
+                password
+            });
+            console.log('User details :', response);
+            const res = response.data;
+            if (res.status === true) {
+                
+                localStorage.setItem('commerce', JSON.stringify(res.user));
+                console.log('User details stored:', res.user);
+                setProfileData(res.user);
 
+            }
+            // setIsLoading(false);
+            navigate('/dashboard');
+        } catch (error) {
+            console.error('Error occurred during login:', error);
+            // setIsLoading(false);
         }
-        navigate('/dashboard')
+
     }
     const handleChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value })
@@ -69,31 +85,3 @@ const Login = () => {
 }
 
 export default Login
-
-
-
-
-
-// const profileRef = useRef(['userRef', 'passwordRef']);
-
-// const userRef = profileRef.current[0];
-// const passwordRef = profileRef.current[1];
-
-// const {user,dispatch, isFetching} = useContext(Context)
-
-//     const handleSubmit  = async (e) => {
-//     e.preventDefault();
-//     dispatch({type:"LOGIN_START"});
-//     try {
-//         const res = await axios.get('https://prakem-api.onrender.com/api/auth/login', {
-//            email: userRef.current.value,
-//            password: passwordRef.current.value,
-//         })
-//         dispatch({type:"LOGIN_SUCCESS", payload: res.data});
-
-//     } catch (err) {
-//         dispatch({type:"LOGIN_FAILURE"});
-
-//     }
-// }
-// console.log(user)
