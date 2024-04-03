@@ -8,11 +8,11 @@ const Sales = () => {
   return (
     <div className='w-full py-9 bg-design6'>
       <div style={Container}>
-        <div className='flex justify-between'>
+        <div className='block justify-between md:flex'>
           <img src={offer} alt='' />
-          <div className='w-1/2'>
+          <div className='w-full md:w-1/2'>
             <Text />
-            {/* <CountDown /> */}
+            <CountDown />
           </div>
         </div>
       </div>

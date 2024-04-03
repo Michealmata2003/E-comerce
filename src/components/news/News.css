@@ -1,0 +1,23 @@
+.title p{
+    width: 40%;
+}
+@media (max-width:768px) {
+    .latestnews{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .title p{
+        width: 80%;
+    }
+}
+
+
+@media (max-width:400px) {
+    .latestnews{
+        display:grid;
+        grid-template-columns: 1fr;
+    }
+    .title p{
+        width: 100%;
+    }
+}

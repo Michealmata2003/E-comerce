@@ -1,31 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useState,useEffect } from 'react';
 import Text from './text';
 import axios from 'axios';
 
 
 const Product = () => {
+  const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const getProducts = async () => {
-      const response = await axios.get('https://prakem-api.onrender.com/api/product/all/')
-      console.log(response)
-    }
-    getProducts()
-  },[])
+  // useEffect(() => {
+  //   const getProducts = async () => {
+  //     try {
+  //       const response = await  axios.get('https://prakem-api.onrender.com/api/product/all/');
+        
+  //       setData(response); 
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   };
+
+  //   getProducts();
+  // }, []); 
+  
   return (
     <div className=''>
       <Text />
       <div>
         <div className='py-7 w-full'>
-          <div className='grid grid-cols-4  w-1/2 m-auto gap-6 text-center'>
-            <h6 className='text-xl font-semibold hover:text-logo'>New Arrival</h6>
-            <h6 className='text-xl font-semibold hover:text-logo'>Featured</h6>
-            <h6 className='text-xl font-semibold hover:text-logo'>On Sale</h6>
-            <h6 className='text-xl font-semibold hover:text-logo'>Trending</h6>
+          <div className='grid grid-cols-2  w-1/2 m-auto gap-6 text-center md:grid-cols-4'>
+            <h6 className='text-xl font-semibold hover:text-logo cursor-pointer'>New Arrival</h6>
+            <h6 className='text-xl font-semibold hover:text-logo cursor-pointer'>Featured</h6>
+            <h6 className='text-xl font-semibold hover:text-logo cursor-pointer'>On Sale</h6>
+            <h6 className='text-xl font-semibold hover:text-logo cursor-pointer'>Trending</h6>
           </div>
-          {/* {getProducts.map((res,index) =>(
+          {/* {data.map((res,index) =>(
             <div key={index}>
-              <img />
+              <img  src={res.products.images} alt='img'/>
             </div>
           ))} */}
 

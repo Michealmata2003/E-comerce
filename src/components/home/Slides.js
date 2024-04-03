@@ -45,11 +45,10 @@ const Slides = () => {
         slides.map((slide, index) => (
           <div key={slide.id} className={index === currentSlide ? "slidex current" : "slidex"}>
             {index === currentSlide && (
-              <div className='flex w-full py-3.5 h-full m-auto justify-center align-center'>
+              <div className='block w-full py-3.5 h-full m-auto justify-center align-center sm:flex'>
                 {slide.text}
-                <div className='w-1/2 align-center justify-center flex'>
-                  <img style={ImageStyle} src={slide.img} alt='image' />
-
+                <div className='w-full align-center justify-center flex md:w-1/2'>
+                  <img className='heroimage' src={slide.img} alt='image' />
                 </div>
               </div>
             )

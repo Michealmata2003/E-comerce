@@ -5,6 +5,7 @@ import Seller from './seller/Seller';
 import Text from './Text';
 import { Container } from '../../../Style';
 import { SellerButton } from './SellerButton';
+import './Sellers.css'
 
 
 const SellerComp = () => {
@@ -16,8 +17,6 @@ const SellerComp = () => {
 
 
   const ShowArrival = () => {
-    // setIsButtonClicked(true);
-    // setCurrentColor('red');
     setshowArrival(true)
     setshowRating(false)
     setshowSeller(false)
@@ -25,32 +24,15 @@ const SellerComp = () => {
 
   }
   const ShowRating = () => {
-    // setIsButtonClicked(true);
-    // setCurrentColor('red');
     setshowArrival(false)
     setshowRating(true)
     setshowSeller(false)
   }
   const ShowSeller = () => {
-    // setIsButtonClicked(true);
-    // setCurrentColor('red');
     setshowArrival(false)
     setshowRating(false)
     setshowSeller(true)
   }
-  // const handleButtonClick = () => {
-  //   setIsButtonClicked(true);
-  //   setCurrentColor('red');
-  // }
-  // const renderComponent = () => {
-  //   if (isButtonClicked) {
-  //     setIsButtonClicked(true);
-  //     setCurrentColor('red');
-
-  //   } else {
-  //     return null
-  //   }
-  // }
 
   return (
     <div style={Container}>
@@ -59,10 +41,10 @@ const SellerComp = () => {
 
       <div className='w-full m-auto text-center py-9'>
         <Text />
-        <div className='w-1/2 grid grid-cols-3 py-6 gap-x-7 align-center justify-center m-auto'>
-          <SellerButton onClick={ShowArrival}  >NEW ARRIVALS</SellerButton>
-          <SellerButton onClick={ShowSeller} >BEST SELLERS</SellerButton>
-          <SellerButton onClick={ShowRating}  >TOP RATES</SellerButton>
+        <div className='w-full grid grid-cols-3 py-6 gap-x-7 align-center justify-center m-auto md:w-1/2'>
+          <SellerButton className={showArrival ? 'lactive' : 'notActive'} onClick={ShowArrival}  >NEW ARRIVALS</SellerButton>
+          <SellerButton className={showSeller ? 'lactive' : 'notActive'} onClick={ShowSeller} >BEST SELLERS</SellerButton>
+          <SellerButton className={showRating ? 'lactive' : 'notActive'} onClick={ShowRating}  >TOP RATES</SellerButton>
         </div>
       </div>
       {showArrival ? <Arrival /> : showSeller ? <Seller /> : showRating ? <Rating /> : null}

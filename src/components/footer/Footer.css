@@ -1,0 +1,13 @@
+@media (max-width:768px) {
+    .footer{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width:530px) {
+    .footer{
+        display:grid;
+        grid-template-columns: 1fr;
+    }
+}

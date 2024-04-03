@@ -8,6 +8,6 @@ export const Container = {
 export const ImageStyle = {
     
     // width:'100%',
-    // height:'100%',
+    // height:'fit',
 
 }

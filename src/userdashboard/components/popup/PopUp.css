@@ -1,0 +1,53 @@
+.popup {
+  padding: 45px;
+}
+.modalpopup {
+  position: relative;
+  justify-content: center;
+  width: 40%;
+  /* height: 70vh; */
+  margin: auto;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px blue;
+}
+.modalpopup div {
+  position: relative;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.modalpopup div button {
+  width: 100%;
+  padding: 10px 0px;
+}
+.modalpopup div img {
+  width: 90%;
+}
+
+
+@media (max-width:768px) {
+  .modalpopup {
+    position: relative;
+    justify-content: center;
+    width: 70%;
+  }
+  .popup {
+    padding: 10px;
+  }
+}
+
+
+@media (max-width:450px) {
+  .modalpopup {
+    position: relative;
+    justify-content: center;
+    width: 100%;
+   
+  }
+}

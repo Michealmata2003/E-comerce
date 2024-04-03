@@ -1,0 +1,58 @@
+.fullprofile{
+    justify-content: center;
+    margin: auto;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+}
+.setprof{
+    position: relative;
+    justify-content: center;
+    width: 30%;
+    height: fit-content;
+    margin: auto;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px  blue;
+
+}
+.prof{
+    padding: 10px 0px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.setprof button{
+    position: relative;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+    background-color: transparent;
+    color: black;
+    border: 2px solid rgb(29, 29, 224);
+}
+.setprof button:hover{
+    
+    color: #ffffff;
+    background-color:  rgb(29, 29, 224);
+}
+@media (max-width:768px) {
+    .setprof{
+        position: relative;
+        justify-content: center;
+        width: 60%;
+    
+    }
+}
+
+@media (max-width:400px) {
+    .setprof{
+        position: relative;
+        justify-content: center;
+        width: 90%;
+    
+    }
+}

@@ -6,25 +6,31 @@ import Text from './Text';
 import { CustomInputButton } from '../buttons/Button';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useProfile } from '../../context/Context';
+import { useAuth, useProfile } from '../../context/Context';
 
 const Login = () => {
+    const {login} = useAuth()
     const navigate = useNavigate()
     const { setProfileData } = useProfile();
-    // const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState(null); // Add state for error handling
 
 
-    const [values, setValues] = useState({
-        email: '',
-        password: '',
-    })
     useEffect(() => {
         if (localStorage.getItem('commerce')) {
             navigate('/login')
         }
     }, [])
+    const [values, setValues] = useState({
+        email: '',
+        password: '',
+    })
+
+
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setIsLoading(true);
+
         const { email, password } = values;
         try {
             const response = await axios.post('https://prakem-api.onrender.com/api/auth/login', {
@@ -34,17 +40,19 @@ const Login = () => {
             console.log('User details :', response);
             const res = response.data;
             if (res.status === true) {
-                
+
                 localStorage.setItem('commerce', JSON.stringify(res.user));
                 console.log('User details stored:', res.user);
                 setProfileData(res.user);
-
+                navigate('/dashboard');
+                login()
             }
-            // setIsLoading(false);
-            navigate('/dashboard');
+
         } catch (error) {
             console.error('Error occurred during login:', error);
-            // setIsLoading(false);
+            setError('an error occur suring login');
+        } finally {
+            setIsLoading(false); // Reset loading state
         }
 
     }
@@ -56,7 +64,7 @@ const Login = () => {
             <Text />
             <div style={Container}>
 
-                <form onSubmit={handleSubmit} className='w-2/5 m-auto p-6 shadow-2xl my-6'>
+                <form onSubmit={handleSubmit} className='w-full m-auto p-6 shadow-2xl my-6 md:w-2/5'>
                     <CustomFormInput
                         name={'email'}
                         label={'Email*'}
@@ -72,7 +80,9 @@ const Login = () => {
                         onChange={(e) => handleChange(e)}
 
                     />
-                    <CustomInputButton type="submit">SIGNIN</CustomInputButton>
+                    <CustomInputButton type="submit">{isLoading ? 'Signing In...' : 'SIGNIN'}</CustomInputButton>
+                    {error && <p>{error}</p>}
+
                     <div className='flex gap-3 py-3'>
                         <NavLink to='/signup' className=' w-full text-center justify-center flex m-auto text-base py-3 text-white bg-black hover:bg-design4  hover:text-design2' >CREATE AN ACCOUNT</NavLink>
                         <NavLink to='/login' className=' w-full text-center justify-center flex m-auto text-base py-3 text-black bg-design4 hover:bg-black hover:text-white' >FORGOTTEN PASSWORD</NavLink>

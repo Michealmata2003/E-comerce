@@ -10,7 +10,7 @@ import Dropdown from "../dropdown/Dropdown";
 
 
 
-const Nav = () => {
+const Nav = ({handleShowSettings}) => {
   const [droppingOptions, setDroppingOptions] = useState(false);
 
 
@@ -35,7 +35,7 @@ const Nav = () => {
           </ul>
 
           <ul className="flex gap-3.5 text-center items-center text-sm font-semibold">
-            <li>
+            {/* <li>
               <NavLink className='flex flex text-center items-center font-semibold'>
               <IoMdCart />
               Cart
@@ -47,13 +47,13 @@ const Nav = () => {
                 <CiSearch />
                 Search
               </NavLink>
-            </li>
+            </li> */}
             <li className=" gap-2">
               <NavLink onClick={handleDropdown} className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-gray-300 hover:bg-gray-50 flex text-center items-center font-semibold" >
                 <MdAccountCircle />
                 Account
               </NavLink>
-              {droppingOptions && <Dropdown />  }
+              {droppingOptions && <Dropdown  handleShowSettings={handleShowSettings}/>  }
 
             </li>
             

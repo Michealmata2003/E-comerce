@@ -90,9 +90,10 @@ const Register = () => {
     });
     if (res.status === true) {
       localStorage.setItem('commerce', JSON.stringify(res.data))
+      navigate('/login')
     }
     console.log(res);
-    navigate('/login')
+    
   }
   const handleChange = (e) => {
     if (e.target.type === 'checkbox') {
@@ -112,7 +113,7 @@ const Register = () => {
     <div className='py-7'>
       <div style={Container}>
         <Text />
-        <form onSubmit={handleSubmit} className='w-2/5 m-auto p-6 shadow-2xl '>
+        <form onSubmit={handleSubmit} className='w-full m-auto p-6 shadow-2xl md:w-2/5'>
           <CustomFormInput
             name={'firstName'}
             label={'First Name*'}

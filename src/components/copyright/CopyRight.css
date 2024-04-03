@@ -1,0 +1,6 @@
+@media (max-width:768px) {
+    .copyright{
+        display:block;
+        /* grid-template-columns: 1fr 1fr; */
+    }
+}

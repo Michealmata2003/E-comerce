@@ -4,7 +4,7 @@ import { sellerData } from './sellerData';
 const Seller = () => {
   return (
     <div className='flex m-auto'>
-      <div className='grid grid-cols-4 align-center py-6 gap-x-7 justify-center m-auto'>
+      <div className='grid grid-cols-2 align-center py-6 gap-x-7 justify-center m-auto md:grid-cols-4'>
       {
         sellerData.map((data, index) => (
           <div className='m-auto justify-center align-center w-full py-5' key={index}>

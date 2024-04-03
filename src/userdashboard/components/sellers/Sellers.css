@@ -1,0 +1,23 @@
+.lactive {
+  border-bottom: 2px solid red;
+  padding: 10px 0px;
+  transition: 1s;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+  background-color: transparent;
+  color: #000000;
+  cursor: pointer;
+}
+.notactive {
+    padding: 10px 0px;
+    transition: 1s;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    background-color: transparent;
+    color: #000000;
+    cursor: pointer;
+}
