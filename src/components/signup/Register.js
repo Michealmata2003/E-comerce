@@ -27,7 +27,7 @@ const Register = () => {
     lastName: '',
     email: '',
     password: '',
-    privacyPolicy: ''
+    privacyPolicy: false,
 
   });
 
@@ -90,8 +90,9 @@ const Register = () => {
     });
     if (res.status === true) {
       localStorage.setItem('commerce', JSON.stringify(res.data))
-      navigate('/login')
+      
     }
+    navigate('/login')
     console.log(res);
     
   }
@@ -147,7 +148,7 @@ const Register = () => {
             <input
               type='checkbox'
               name='privacyPolicy'
-              checked={values.privacyPolicy}
+              defaultChecked={values.privacyPolicy}
               onChange={handleChange}
 
             />

@@ -17,16 +17,3 @@ const PrivateRoute = ({ children }) => {
 
 export default PrivateRoute;
 
-
-// const PrivateRoute = ({ element: Component, ...rest }) => {
-//     const { isLoggedIn } = useAuth();
-  
-//     return (
-//       <Route
-//         {...rest}
-//         element={isLoggedIn ? <Component /> : <Navigate to="/login" replace />}
-//       />
-//     );
-//   };
-  
-//   export default PrivateRoute;
