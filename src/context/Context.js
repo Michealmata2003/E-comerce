@@ -1,75 +1,46 @@
 import { useContext, createContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { StorageService } from "../lib/storage";
+// import { useNavigate } from "react-router-dom";
 
 const ProfileContext = createContext();
 const AuthContext = createContext();
 
 export const useProfile = () => useContext(ProfileContext);
 
-
-
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-    // const navigate = useNavigate()
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const initialAuthState = StorageService.getAuth() ? true : false;
+
+  const [isAuthenticated, setIsAuthenticated] = useState(initialAuthState);
 
   const login = () => {
     // Perform login logic
-    setIsLoggedIn(true);
+    setIsAuthenticated(true);
+    StorageService.setAuth(true)
   };
 
   const logout = () => {
     // Perform logout logic
-    setIsLoggedIn(false);
-    // navigate('/')
+    setIsAuthenticated(false);
+    StorageService.removeAuth()
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-
-
-// export function useAuth() {
-//     return useContext(AuthContext);
-// }
-// export function AuthProvider(props) {
-//     const [authUser, setAuthUser] = useState(null)
-//     const [isLoggedIn, setIsLoggedIn] = useState(false)
-    
-//     const logout = () => {
-//         setAuthUser(null);
-//         setIsLoggedIn(false);
-//     };
-
-//     const value = {
-//         authUser,
-//         setAuthUser,
-//         isLoggedIn,
-//         setIsLoggedIn,
-//         logout
-//     }
-//     return (
-//         <AuthContext.Provider value={value}>
-//             {props.children}
-//         </AuthContext.Provider>
-//     )
-
-// }
-
-
 export const ProfileProvider = ({ children }) => {
-    const [profileData, setProfileData] = useState(null);
+  const [profileData, setProfileData] = useState(null);
 
-    return (
-        <ProfileContext.Provider value={{ profileData, setProfileData }}>
-            {children}
-        </ProfileContext.Provider>
-    );
+  return (
+    <ProfileContext.Provider value={{ profileData, setProfileData }}>
+      {children}
+    </ProfileContext.Provider>
+  );
 };
 
 
