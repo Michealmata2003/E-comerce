@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const Dropdown = ({handleShowSettings}) => {
     const navigate = useNavigate()
 
-    const { isLoggedIn, logout } = useAuth();
+    const { isAuthenticated, logout } = useAuth();
     // const { showSettings, setShowSettings } = useState(false);
 
     const handleLogout = () => {
@@ -22,7 +22,7 @@ const Dropdown = ({handleShowSettings}) => {
 
                 <a href="#" className=" my-1 text-gray-700 rounded block px-4 py-2 text-sm bg-design4 hover:bg-logo" role="menuitem" tabindex="-1" id="menu-item-0">Order</a>
                 <p  onClick={handleShowSettings} className=" my-1text-gray-700 rounded pointer block px-4 py-2 text-sm bg-design4 hover:bg-logo" role="menuitem" tabindex="-1" id="menu-item-1">Settings</p>
-                {isLoggedIn && <a href="#" onClick={handleLogout} className="my-1 text-gray-700 rounded block px-4 py-2 text-sm bg-design4 hover:bg-logo" role="menuitem" tabindex="-1" id="menu-item-2">Log Out</a>
+                {isAuthenticated && <a href="#" onClick={handleLogout} className="my-1 text-gray-700 rounded block px-4 py-2 text-sm bg-design4 hover:bg-logo" role="menuitem" tabindex="-1" id="menu-item-2">Log Out</a>
                 }            </div>
         </div>
     )
