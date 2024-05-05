@@ -9,15 +9,15 @@ import axios from "axios";
 import { useAuth, useProfile } from "../../context/Context";
 
 const Login = () => {
-  const { login } = useAuth();
+  const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const { setProfileData } = useProfile();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null); // Add state for error handling
 
   useEffect(() => {
-    if (localStorage.getItem("commerce")) {
-      navigate("/login");
+    if (isAuthenticated) {
+      navigate("/dashboard");
     }
   }, []);
   const [values, setValues] = useState({

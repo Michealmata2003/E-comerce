@@ -5,6 +5,7 @@ import { Container } from '../../Style'
 import { NavLink } from 'react-router-dom'
 import { CustomInputButton } from '../buttons/Button';
 import axios from 'axios';
+import { useAuth } from '../../context/Context'
 import { useNavigate } from 'react-router-dom'
 
 // const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
@@ -14,6 +15,7 @@ import { useNavigate } from 'react-router-dom'
 const Register = () => {
   // const userRef = useRef();
   // const errRef = useRef();z
+  const {isAuthenticated} = useAuth()
   const navigate = useNavigate()
 
   const [values, setValues] = useState({
@@ -32,8 +34,8 @@ const Register = () => {
   });
 
   useEffect(() => {
-    if (localStorage.getItem('commerce')) {
-      navigate('/signup')
+    if (isAuthenticated) {
+      navigate('/dashboard')
     }
   }, [])
 
